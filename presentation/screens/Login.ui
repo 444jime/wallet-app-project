@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>798</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+					background-color: #121212;
+					color: #ffffff;
+					font-family: Segoe UI;
+					font-size: 14px;
+				}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>150</y>
+      <width>361</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLineEdit" name="txtUser">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+				background-color: rgba(0,0,0,50) ;
+				color: white;
+				font-size: 15px;
+				background-color: transparente;
+				border: 1px solid #cccccc;
+				border-radius: 5px;
+				padding: 5px;
+				}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Ingrese su nombre de usuario</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txtPassword">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+				background-color: rgba(0,0,0,50) ;
+				color: white;
+				font-size: 15px;
+				background-color: transparente;
+				border: 1px solid #cccccc;
+				border-radius: 5px;
+				padding: 5px;
+				}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Ingrese su contraseña</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblValidUser">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ff5555;
+	font-size: 15px;
+	font-weight: bold;
+	text-decoration: underline;
+}</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>360</y>
+      <width>271</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btnLogin">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+                        background-color: #77dd77 ;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px 18px;
+                        color: #111111;
+                        font-size: 15px;
+                        font-weight: bold;
+						  letter-spacing: 1px;
+                        }
+
+QPushButton:hover{
+                        background-color:#66cc66;       
+    			            }
+	
+QPushButton:pressed{
+                        background-color:#55aa55;
+                }</string>
+       </property>
+       <property name="text">
+        <string>Iniciar sesion</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="lblExistingUser">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #ff5555;
+	font-size: 15px;
+	font-weight: bold;
+	text-decoration: underline;
+}</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+	color: #77dd77;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Segoe UI;
+	letter-spacing: 0.5px;
+}</string>
+       </property>
+       <property name="text">
+        <string>No tenes usuario? Crea uno!</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCreateUser">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+                        background-color: #77dd77 ;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px 18px;
+                        color: #111111;
+                        font-size: 15px;
+                        font-weight: bold;
+						  letter-spacing: 1px;
+                        }
+
+QPushButton:hover{
+                        background-color:#66cc66;       
+    			            }
+	
+QPushButton:pressed{
+                        background-color:#55aa55;
+                }</string>
+       </property>
+       <property name="text">
+        <string>Crear usuario</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="lblValidUser_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>359</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: #77dd77;
+    qproperty-alignment: 'AlignCenter';
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Wallet APP !</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>798</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
