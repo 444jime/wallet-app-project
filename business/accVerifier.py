@@ -38,7 +38,11 @@ class AccVerifier:
             raise ValueError('No existe cuenta en esta moneda para este usuario')
         
         return cuenta.saldo
-        
+    
+    def get_all_accs(self):    
+        cuentas = self.dbService.get_acc_by_user(self.user)
+        return cuentas
+                
     def negative_verifier(self,amount):
         decimal = Decimal(str(amount))
         if decimal <= 0:

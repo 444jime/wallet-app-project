@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_WalletApp(object):
     def setupUi(self, WalletApp):
         WalletApp.setObjectName("WalletApp")
-        WalletApp.resize(760, 528)
+        WalletApp.resize(757, 542)
         WalletApp.setStyleSheet("QWidget {\n"
 "                    background-color: #121212;\n"
 "                    color: #ffffff;\n"
@@ -22,7 +22,7 @@ class Ui_WalletApp(object):
         self.centralwidget = QtWidgets.QWidget(parent=WalletApp)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(130, 330, 511, 131))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(130, 330, 511, 157))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -71,28 +71,6 @@ class Ui_WalletApp(object):
 "                }")
         self.btnCreate.setObjectName("btnCreate")
         self.gridLayout.addWidget(self.btnCreate, 1, 0, 1, 1)
-        self.btnBuy = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
-        self.btnBuy.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btnBuy.setStyleSheet("QPushButton{\n"
-"                        background-color: #77dd77 ;\n"
-"                        border: none;\n"
-"                        border-radius: 8px;\n"
-"                        padding: 10px 18px;\n"
-"                        color: #111111;\n"
-"                        font-size: 15px;\n"
-"                        font-weight: bold;\n"
-"                          letter-spacing: 1px;\n"
-"                        }\n"
-"\n"
-"QPushButton:hover{\n"
-"                        background-color:#66cc66;       \n"
-"                            }\n"
-"    \n"
-"QPushButton:pressed{\n"
-"                        background-color:#55aa55;\n"
-"                }")
-        self.btnBuy.setObjectName("btnBuy")
-        self.gridLayout.addWidget(self.btnBuy, 0, 0, 1, 1)
         self.btnDeposit = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
         self.btnDeposit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.btnDeposit.setStyleSheet("QPushButton{\n"
@@ -115,60 +93,84 @@ class Ui_WalletApp(object):
 "                }")
         self.btnDeposit.setObjectName("btnDeposit")
         self.gridLayout.addWidget(self.btnDeposit, 1, 1, 1, 1)
-        self.gridLayoutWidget_2 = QtWidgets.QWidget(parent=self.centralwidget)
-        self.gridLayoutWidget_2.setGeometry(QtCore.QRect(100, 20, 571, 301))
-        self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget_2)
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.tblAccs = QtWidgets.QTableWidget(parent=self.gridLayoutWidget_2)
+        self.btnBuy = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
+        self.btnBuy.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnBuy.setStyleSheet("QPushButton{\n"
+"                        background-color: #77dd77 ;\n"
+"                        border: none;\n"
+"                        border-radius: 8px;\n"
+"                        padding: 10px 18px;\n"
+"                        color: #111111;\n"
+"                        font-size: 15px;\n"
+"                        font-weight: bold;\n"
+"                          letter-spacing: 1px;\n"
+"                        }\n"
+"\n"
+"QPushButton:hover{\n"
+"                        background-color:#66cc66;       \n"
+"                            }\n"
+"    \n"
+"QPushButton:pressed{\n"
+"                        background-color:#55aa55;\n"
+"                }")
+        self.btnBuy.setObjectName("btnBuy")
+        self.gridLayout.addWidget(self.btnBuy, 0, 0, 1, 1)
+        self.tblAccs = QtWidgets.QTableWidget(parent=self.centralwidget)
+        self.tblAccs.setGeometry(QtCore.QRect(100, 10, 569, 299))
         self.tblAccs.setStyleSheet("QTableWidget {\n"
-"    background-color: transparent;\n"
-"    gridline-color: #333333;\n"
-"    border: 1px solid #444444;\n"
+"    background-color: #1b1b1b; \n"
+"    gridline-color: #4a7a4a;\n"
+"    border: 1px solid #4a7a4a;\n"
 "    font-family: Arial, sans-serif;\n"
 "    font-size: 14px;\n"
-"    color: #111111;\n"
+"    color: #e0ffe0;\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
-"    background-color: #77dd77;\n"
-"    color: #111111;\n"
+"    background-color: #77dd77;  \n"
+"    color: #1b1b1b; \n"
 "    padding: 5px;\n"
-"    border: 1px solid #444444;\n"
+"    border: 1px solid #4a7a4a;\n"
 "    font-weight: bold;\n"
+"}\n"
+"\n"
+"QTableCornerButton::section {\n"
+"    background-color: #1b1b1b;\n"
+"    border: 1px solid #4a7a4a;\n"
 "}\n"
 "\n"
 "QTableWidget::item {\n"
 "    padding: 5px;\n"
-"    background-color: rgba(255,255,255,0);\n"
+"    background-color: rgba(0, 0, 0, 0.5);\n"
+"    color: #e0ffe0;\n"
 "}\n"
 "\n"
 "QTableWidget::item:alternate {\n"
-"    background-color: rgba(255,255,255,0.05); \n"
+"    background-color: rgba(119, 221, 119, 0.1); \n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
-"    background-color: #4a90e2;\n"
+"    background-color: #4a7a4a; \n"
 "    color: #ffffff;\n"
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
 "    border: none;\n"
-"    background: transparent;\n"
+"    background: #1b1b1b;\n"
 "    width: 12px;\n"
 "    margin: 0px 0px 0px 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background: #666666;\n"
+"    background: #77dd77;\n"
 "    min-height: 20px;\n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {\n"
 "    height: 0;\n"
-"}")
+"}\n"
+"")
         self.tblAccs.setObjectName("tblAccs")
         self.tblAccs.setColumnCount(2)
         self.tblAccs.setRowCount(0)
@@ -177,14 +179,54 @@ class Ui_WalletApp(object):
         item = QtWidgets.QTableWidgetItem()
         self.tblAccs.setHorizontalHeaderItem(1, item)
         self.tblAccs.verticalHeader().setStretchLastSection(False)
-        self.gridLayout_2.addWidget(self.tblAccs, 0, 0, 1, 1)
         WalletApp.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=WalletApp)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 760, 25))
-        self.menubar.setObjectName("menubar")
-        self.menuasd = QtWidgets.QMenu(parent=self.menubar)
-        self.menuasd.setObjectName("menuasd")
-        WalletApp.setMenuBar(self.menubar)
+        self.mbarVer = QtWidgets.QMenuBar(parent=WalletApp)
+        self.mbarVer.setGeometry(QtCore.QRect(0, 0, 757, 29))
+        self.mbarVer.setStyleSheet("QMenuBar {\n"
+"    background-color: #1b1b1b;\n"
+"    color: #e0ffe0;\n"
+"    font-family: Arial, sans-serif;\n"
+"    font-size: 14px;\n"
+"    border: 1px solid #4a7a4a;\n"
+"}\n"
+"\n"
+"QMenuBar::item {\n"
+"    background-color: #1b1b1b;\n"
+"    padding: 5px 15px;\n"
+"    margin: 0px 2px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QMenuBar::item:selected {\n"
+"    background-color: #77dd77;\n"
+"    color: #1b1b1b;\n"
+"}\n"
+"\n"
+"QMenu {\n"
+"    background-color: #1b1b1b;\n"
+"    color: #e0ffe0;\n"
+"    border: 1px solid #4a7a4a; \n"
+"}\n"
+"\n"
+"QMenu::item {\n"
+"    background-color: #1b1b1b;\n"
+"    padding: 5px 25px;\n"
+"}\n"
+"\n"
+"QMenu::item:selected {\n"
+"    background-color: #4a7a4a;\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QMenu::separator {\n"
+"    height: 1px;\n"
+"    background: #4a7a4a;\n"
+"    margin: 5px 0px;\n"
+"}")
+        self.mbarVer.setObjectName("mbarVer")
+        self.menuVer = QtWidgets.QMenu(parent=self.mbarVer)
+        self.menuVer.setObjectName("menuVer")
+        WalletApp.setMenuBar(self.mbarVer)
         self.statusbar = QtWidgets.QStatusBar(parent=WalletApp)
         self.statusbar.setObjectName("statusbar")
         WalletApp.setStatusBar(self.statusbar)
@@ -192,9 +234,9 @@ class Ui_WalletApp(object):
         self.actionCerrar_sesion.setObjectName("actionCerrar_sesion")
         self.actionVer_movimientos = QtGui.QAction(parent=WalletApp)
         self.actionVer_movimientos.setObjectName("actionVer_movimientos")
-        self.menuasd.addAction(self.actionCerrar_sesion)
-        self.menuasd.addSeparator()
-        self.menubar.addAction(self.menuasd.menuAction())
+        self.menuVer.addAction(self.actionCerrar_sesion)
+        self.menuVer.addSeparator()
+        self.mbarVer.addAction(self.menuVer.menuAction())
 
         self.retranslateUi(WalletApp)
         QtCore.QMetaObject.connectSlotsByName(WalletApp)
@@ -204,12 +246,12 @@ class Ui_WalletApp(object):
         WalletApp.setWindowTitle(_translate("WalletApp", "MainWindow"))
         self.btnSell.setText(_translate("WalletApp", "Vender moneda"))
         self.btnCreate.setText(_translate("WalletApp", "Crear cuenta"))
-        self.btnBuy.setText(_translate("WalletApp", "Compra de moneda"))
         self.btnDeposit.setText(_translate("WalletApp", "Depositar ARS"))
+        self.btnBuy.setText(_translate("WalletApp", "Compra de moneda"))
         item = self.tblAccs.horizontalHeaderItem(0)
         item.setText(_translate("WalletApp", "Moneda"))
         item = self.tblAccs.horizontalHeaderItem(1)
         item.setText(_translate("WalletApp", "Monto"))
-        self.menuasd.setTitle(_translate("WalletApp", "Ver"))
+        self.menuVer.setTitle(_translate("WalletApp", "Ver"))
         self.actionCerrar_sesion.setText(_translate("WalletApp", "Cerrar sesion"))
         self.actionVer_movimientos.setText(_translate("WalletApp", "Ver movimientos"))
