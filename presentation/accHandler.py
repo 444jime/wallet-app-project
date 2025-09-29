@@ -2,7 +2,7 @@ from business import AccVerifier
 from decimal import Decimal
 import time
 
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QHeaderView
 from .screens import Ui_WalletApp
 
 class AccHandler(QMainWindow,Ui_WalletApp):
@@ -10,6 +10,10 @@ class AccHandler(QMainWindow,Ui_WalletApp):
         self.user = user
         super().__init__()
         self.setupUi(self)
-
+        
+        self.tblAccs.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+                
         self.show()
 
+    def loadData(self):
+        pass
