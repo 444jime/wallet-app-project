@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>513</width>
-    <height>426</height>
+    <width>641</width>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,238 @@
 					font-size: 14px;
 				}</string>
   </property>
+  <widget class="QLabel" name="lblAppName">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>20</y>
+     <width>301</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #77dd77;
+    qproperty-alignment: 'AlignCenter';
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Crear usuario</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>110</y>
+     <width>421</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="txtPassword_2">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+				background-color: rgba(0,0,0,50) ;
+				color: white;
+				font-size: 15px;
+				background-color: transparente;
+				border: 1px solid #cccccc;
+				border-radius: 5px;
+				padding: 5px;
+				}</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Ingrese su contraseña nuevamente</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="txtPassword">
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+				background-color: rgba(0,0,0,50) ;
+				color: white;
+				font-size: 15px;
+				background-color: transparente;
+				border: 1px solid #cccccc;
+				border-radius: 5px;
+				padding: 5px;
+				}</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Ingrese su contraseña</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="2">
+     <widget class="QPushButton" name="btnShowPwd">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>61</width>
+        <height>37</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border: 1px solid #cccccc;	
+    border-radius: 12px;
+    background-color: transparent;
+    image: url(presentation/icons/closed.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton{
+    image: url(presentation/icons/open.png);
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLineEdit" name="txtUser">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+				background-color: rgba(0,0,0,50) ;
+				color: white;
+				font-size: 15px;
+				background-color: transparente;
+				border: 1px solid #cccccc;
+				border-radius: 5px;
+				padding: 5px;
+				}</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhHiddenText|Qt::ImhSensitiveData</set>
+      </property>
+      <property name="placeholderText">
+       <string>Ingrese su nombre de usuario</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2" alignment="Qt::AlignLeft">
+     <widget class="QLabel" name="lblValidUser">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="cursor">
+       <cursorShape>ForbiddenCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	font-size: 15px;
+	font-weight: bold;
+}</string>
+      </property>
+      <property name="locale">
+       <locale language="Spanish" country="LatinAmerica"/>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TextLabel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="btnCreateUser">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>400</y>
+     <width>269</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+                        background-color: #77dd77 ;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px 18px;
+                        color: #111111;
+                        font-size: 15px;
+                        font-weight: bold;
+						  letter-spacing: 1px;
+                        }
+
+QPushButton:hover{
+                        background-color:#66cc66;       
+    			            }
+	
+QPushButton:pressed{
+                        background-color:#55aa55;
+                }</string>
+   </property>
+   <property name="text">
+    <string>Crear usuario</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

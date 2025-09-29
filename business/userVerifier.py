@@ -20,6 +20,8 @@ class UserVerifier:
         return bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
 
     def create_user(self,user,pwd):
+        self.valid_entry(user)
+        self.valid_entry(pwd)
         password = self.hash_password(pwd)
         self.dbService.newUser(user,password)
 
