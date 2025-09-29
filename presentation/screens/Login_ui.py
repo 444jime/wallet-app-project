@@ -9,20 +9,21 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(798, 600)
-        MainWindow.setStyleSheet("QWidget {\n"
+class Ui_Login(object):
+    def setupUi(self, Login):
+        Login.setObjectName("Login")
+        Login.resize(798, 600)
+        Login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
+        Login.setStyleSheet("QWidget {\n"
 "                    background-color: #121212;\n"
 "                    color: #ffffff;\n"
 "                    font-family: Segoe UI;\n"
 "                    font-size: 14px;\n"
 "                }")
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QWidget(parent=Login)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(230, 150, 361, 211))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 130, 391, 221))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -38,8 +39,14 @@ class Ui_MainWindow(object):
 "                border-radius: 5px;\n"
 "                padding: 5px;\n"
 "                }")
+        self.txtUser.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
         self.txtUser.setObjectName("txtUser")
         self.verticalLayout.addWidget(self.txtUser)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, -1)
+        self.horizontalLayout.setSpacing(12)
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.txtPassword = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget)
         self.txtPassword.setStyleSheet("QLineEdit {\n"
 "                background-color: rgba(0,0,0,50) ;\n"
@@ -50,26 +57,58 @@ class Ui_MainWindow(object):
 "                border-radius: 5px;\n"
 "                padding: 5px;\n"
 "                }")
+        self.txtPassword.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhNoAutoUppercase|QtCore.Qt.InputMethodHint.ImhNoPredictiveText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
+        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.txtPassword.setObjectName("txtPassword")
-        self.verticalLayout.addWidget(self.txtPassword)
+        self.horizontalLayout.addWidget(self.txtPassword)
+        self.btnShowPwd = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btnShowPwd.sizePolicy().hasHeightForWidth())
+        self.btnShowPwd.setSizePolicy(sizePolicy)
+        self.btnShowPwd.setMinimumSize(QtCore.QSize(32, 32))
+        self.btnShowPwd.setMaximumSize(QtCore.QSize(61, 37))
+        self.btnShowPwd.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnShowPwd.setStyleSheet("QPushButton{\n"
+"    border: 1px solid #cccccc;    \n"
+"    border-radius: 12px;\n"
+"    background-color: transparent;\n"
+"    image: url(presentation/icons/closed.png);\n"
+"    width: 24px;\n"
+"    height: 24px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"    image: url(presentation/icons/open.png);\n"
+"}\n"
+"")
+        self.btnShowPwd.setText("")
+        self.btnShowPwd.setIconSize(QtCore.QSize(30, 30))
+        self.btnShowPwd.setObjectName("btnShowPwd")
+        self.horizontalLayout.addWidget(self.btnShowPwd)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         self.lblValidUser = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        self.lblValidUser.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        self.lblValidUser.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lblValidUser.sizePolicy().hasHeightForWidth())
         self.lblValidUser.setSizePolicy(sizePolicy)
+        self.lblValidUser.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ForbiddenCursor))
         self.lblValidUser.setStyleSheet("QLabel {\n"
 "    color: #ff5555;\n"
 "    font-size: 15px;\n"
 "    font-weight: bold;\n"
 "    text-decoration: underline;\n"
 "}")
+        self.lblValidUser.setLocale(QtCore.QLocale(QtCore.QLocale.Language.Spanish, QtCore.QLocale.Country.LatinAmerica))
         self.lblValidUser.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblValidUser.setWordWrap(True)
         self.lblValidUser.setObjectName("lblValidUser")
         self.verticalLayout.addWidget(self.lblValidUser)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(280, 360, 271, 161))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(270, 360, 271, 161))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -96,22 +135,6 @@ class Ui_MainWindow(object):
 "                }")
         self.btnLogin.setObjectName("btnLogin")
         self.verticalLayout_2.addWidget(self.btnLogin)
-        self.lblExistingUser = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
-        self.lblExistingUser.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lblExistingUser.sizePolicy().hasHeightForWidth())
-        self.lblExistingUser.setSizePolicy(sizePolicy)
-        self.lblExistingUser.setStyleSheet("QLabel {\n"
-"    color: #ff5555;\n"
-"    font-size: 15px;\n"
-"    font-weight: bold;\n"
-"    text-decoration: underline;\n"
-"}")
-        self.lblExistingUser.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.lblExistingUser.setObjectName("lblExistingUser")
-        self.verticalLayout_2.addWidget(self.lblExistingUser)
         self.label = QtWidgets.QLabel(parent=self.verticalLayoutWidget_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -151,10 +174,10 @@ class Ui_MainWindow(object):
 "                }")
         self.btnCreateUser.setObjectName("btnCreateUser")
         self.verticalLayout_2.addWidget(self.btnCreateUser)
-        self.lblValidUser_2 = QtWidgets.QLabel(parent=self.centralwidget)
-        self.lblValidUser_2.setEnabled(True)
-        self.lblValidUser_2.setGeometry(QtCore.QRect(230, 20, 359, 131))
-        self.lblValidUser_2.setStyleSheet("QLabel {\n"
+        self.lblAppName = QtWidgets.QLabel(parent=self.centralwidget)
+        self.lblAppName.setEnabled(True)
+        self.lblAppName.setGeometry(QtCore.QRect(230, 20, 359, 131))
+        self.lblAppName.setStyleSheet("QLabel {\n"
 "    font-family: \"Segoe UI\", Arial, sans-serif;\n"
 "    font-size: 50px;\n"
 "    font-weight: bold;\n"
@@ -164,28 +187,27 @@ class Ui_MainWindow(object):
 "    margin-bottom: 40px;\n"
 "}\n"
 "")
-        self.lblValidUser_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.lblValidUser_2.setObjectName("lblValidUser_2")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
+        self.lblAppName.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblAppName.setObjectName("lblAppName")
+        Login.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(parent=Login)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 798, 25))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
+        Login.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(parent=Login)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        Login.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Login)
+        QtCore.QMetaObject.connectSlotsByName(Login)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.txtUser.setPlaceholderText(_translate("MainWindow", "Ingrese su nombre de usuario"))
-        self.txtPassword.setPlaceholderText(_translate("MainWindow", "Ingrese su contraseña"))
-        self.lblValidUser.setText(_translate("MainWindow", "TextLabel"))
-        self.btnLogin.setText(_translate("MainWindow", "Iniciar sesion"))
-        self.lblExistingUser.setText(_translate("MainWindow", "TextLabel"))
-        self.label.setText(_translate("MainWindow", "No tenes usuario? Crea uno!"))
-        self.btnCreateUser.setText(_translate("MainWindow", "Crear usuario"))
-        self.lblValidUser_2.setText(_translate("MainWindow", "Wallet APP !"))
+        Login.setWindowTitle(_translate("Login", "MainWindow"))
+        self.txtUser.setPlaceholderText(_translate("Login", "Ingrese su nombre de usuario"))
+        self.txtPassword.setPlaceholderText(_translate("Login", "Ingrese su contraseña"))
+        self.lblValidUser.setText(_translate("Login", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">TextLabel</span></p></body></html>"))
+        self.btnLogin.setText(_translate("Login", "Iniciar sesion"))
+        self.label.setText(_translate("Login", "No tenes usuario? Crea uno!"))
+        self.btnCreateUser.setText(_translate("Login", "Crear usuario"))
+        self.lblAppName.setText(_translate("Login", "Wallet APP !"))
