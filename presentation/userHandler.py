@@ -26,8 +26,9 @@ class UserHandler(QMainWindow,Ui_Login):
         try:
             self.verifier.verificar_login(user,pwd)
             self.hide()
-            self.WalletApp = AccHandler(user)
+            self.WalletApp = AccHandler(self,user)
             self.WalletApp.show()
+            self.txtPassword.clear()
         except ValueError as e:
             self.lblValidUser.show()
             self.lblValidUser.setText(f"Error: {e}. \nIntentelo nuevamente.")

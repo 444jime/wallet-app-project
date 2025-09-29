@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DepositDialog</class>
+ <widget class="QDialog" name="DepositDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>488</width>
+    <height>339</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+					background-color: #121212;
+					color: #ffffff;
+					font-family: Segoe UI;
+					font-size: 14px;
+				}</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

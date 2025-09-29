@@ -30,6 +30,17 @@ class DbService():
             return Cuentas.selectBy(idUser=user.id, moneda=moneda).getOne()
         except SO.SQLObjectNotFound:
             raise ValueError('No existe cuenta en esta moneda para este usuario')
+
+    def get_acc_by_user(self,username):
+        user = self.get_user(username)
+        
+        accs = Cuentas.selectBy(idUser = user.id)
+        acc_list = [{'moneda': cuenta.moneda, 'saldo': cuenta.saldo} for cuenta in accs]
+        
+        if not acc_list:
+            raise ValueError(f'El usuario no tiene cuentas registradas.')
+        
+        return acc_list
     
     def deposit_amount(self,username,acc,amount):
         try:

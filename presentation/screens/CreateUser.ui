@@ -220,7 +220,7 @@ QPushButton{
   <widget class="QPushButton" name="btnCreateUser">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>140</x>
      <y>400</y>
      <width>269</width>
      <height>40</height>
