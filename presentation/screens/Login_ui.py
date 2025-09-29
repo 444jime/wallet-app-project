@@ -14,6 +14,7 @@ class Ui_Login(object):
         Login.setObjectName("Login")
         Login.resize(798, 600)
         Login.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
+        Login.setToolTipDuration(-1)
         Login.setStyleSheet("QWidget {\n"
 "                    background-color: #121212;\n"
 "                    color: #ffffff;\n"
@@ -22,91 +23,6 @@ class Ui_Login(object):
 "                }")
         self.centralwidget = QtWidgets.QWidget(parent=Login)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 130, 391, 221))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.txtUser = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget)
-        self.txtUser.setEnabled(True)
-        self.txtUser.setStyleSheet("QLineEdit {\n"
-"                background-color: rgba(0,0,0,50) ;\n"
-"                color: white;\n"
-"                font-size: 15px;\n"
-"                background-color: transparente;\n"
-"                border: 1px solid #cccccc;\n"
-"                border-radius: 5px;\n"
-"                padding: 5px;\n"
-"                }")
-        self.txtUser.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
-        self.txtUser.setObjectName("txtUser")
-        self.verticalLayout.addWidget(self.txtUser)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetDefaultConstraint)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, -1)
-        self.horizontalLayout.setSpacing(12)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.txtPassword = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget)
-        self.txtPassword.setStyleSheet("QLineEdit {\n"
-"                background-color: rgba(0,0,0,50) ;\n"
-"                color: white;\n"
-"                font-size: 15px;\n"
-"                background-color: transparente;\n"
-"                border: 1px solid #cccccc;\n"
-"                border-radius: 5px;\n"
-"                padding: 5px;\n"
-"                }")
-        self.txtPassword.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhNoAutoUppercase|QtCore.Qt.InputMethodHint.ImhNoPredictiveText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
-        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
-        self.txtPassword.setObjectName("txtPassword")
-        self.horizontalLayout.addWidget(self.txtPassword)
-        self.btnShowPwd = QtWidgets.QPushButton(parent=self.verticalLayoutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btnShowPwd.sizePolicy().hasHeightForWidth())
-        self.btnShowPwd.setSizePolicy(sizePolicy)
-        self.btnShowPwd.setMinimumSize(QtCore.QSize(32, 32))
-        self.btnShowPwd.setMaximumSize(QtCore.QSize(61, 37))
-        self.btnShowPwd.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.btnShowPwd.setStyleSheet("QPushButton{\n"
-"    border: 1px solid #cccccc;    \n"
-"    border-radius: 12px;\n"
-"    background-color: transparent;\n"
-"    image: url(presentation/icons/closed.png);\n"
-"    width: 24px;\n"
-"    height: 24px;\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"    image: url(presentation/icons/open.png);\n"
-"}\n"
-"")
-        self.btnShowPwd.setText("")
-        self.btnShowPwd.setIconSize(QtCore.QSize(30, 30))
-        self.btnShowPwd.setObjectName("btnShowPwd")
-        self.horizontalLayout.addWidget(self.btnShowPwd)
-        self.verticalLayout.addLayout(self.horizontalLayout)
-        self.lblValidUser = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        self.lblValidUser.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lblValidUser.sizePolicy().hasHeightForWidth())
-        self.lblValidUser.setSizePolicy(sizePolicy)
-        self.lblValidUser.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ForbiddenCursor))
-        self.lblValidUser.setStyleSheet("QLabel {\n"
-"    color: #ff5555;\n"
-"    font-size: 15px;\n"
-"    font-weight: bold;\n"
-"    text-decoration: underline;\n"
-"}")
-        self.lblValidUser.setLocale(QtCore.QLocale(QtCore.QLocale.Language.Spanish, QtCore.QLocale.Country.LatinAmerica))
-        self.lblValidUser.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.lblValidUser.setWordWrap(True)
-        self.lblValidUser.setObjectName("lblValidUser")
-        self.verticalLayout.addWidget(self.lblValidUser)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(parent=self.centralwidget)
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(270, 360, 271, 161))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
@@ -189,6 +105,85 @@ class Ui_Login(object):
 "")
         self.lblAppName.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lblAppName.setObjectName("lblAppName")
+        self.gridLayoutWidget = QtWidgets.QWidget(parent=self.centralwidget)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(210, 120, 401, 251))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setVerticalSpacing(1)
+        self.gridLayout.setObjectName("gridLayout")
+        self.txtUser = QtWidgets.QLineEdit(parent=self.gridLayoutWidget)
+        self.txtUser.setEnabled(True)
+        self.txtUser.setStyleSheet("QLineEdit {\n"
+"                background-color: rgba(0,0,0,50) ;\n"
+"                color: white;\n"
+"                font-size: 15px;\n"
+"                background-color: transparente;\n"
+"                border: 1px solid #cccccc;\n"
+"                border-radius: 5px;\n"
+"                padding: 5px;\n"
+"                }")
+        self.txtUser.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
+        self.txtUser.setObjectName("txtUser")
+        self.gridLayout.addWidget(self.txtUser, 0, 0, 1, 2)
+        self.lblValidUser = QtWidgets.QLabel(parent=self.gridLayoutWidget)
+        self.lblValidUser.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lblValidUser.sizePolicy().hasHeightForWidth())
+        self.lblValidUser.setSizePolicy(sizePolicy)
+        self.lblValidUser.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ForbiddenCursor))
+        self.lblValidUser.setStyleSheet("QLabel {\n"
+"    color: #ff5555;\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"}")
+        self.lblValidUser.setLocale(QtCore.QLocale(QtCore.QLocale.Language.Spanish, QtCore.QLocale.Country.LatinAmerica))
+        self.lblValidUser.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblValidUser.setWordWrap(True)
+        self.lblValidUser.setObjectName("lblValidUser")
+        self.gridLayout.addWidget(self.lblValidUser, 2, 0, 1, 2)
+        self.txtPassword = QtWidgets.QLineEdit(parent=self.gridLayoutWidget)
+        self.txtPassword.setStyleSheet("QLineEdit {\n"
+"                background-color: rgba(0,0,0,50) ;\n"
+"                color: white;\n"
+"                font-size: 15px;\n"
+"                background-color: transparente;\n"
+"                border: 1px solid #cccccc;\n"
+"                border-radius: 5px;\n"
+"                padding: 5px;\n"
+"                }")
+        self.txtPassword.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhHiddenText|QtCore.Qt.InputMethodHint.ImhNoAutoUppercase|QtCore.Qt.InputMethodHint.ImhNoPredictiveText|QtCore.Qt.InputMethodHint.ImhSensitiveData)
+        self.txtPassword.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
+        self.txtPassword.setObjectName("txtPassword")
+        self.gridLayout.addWidget(self.txtPassword, 1, 0, 1, 1)
+        self.btnShowPwd = QtWidgets.QPushButton(parent=self.gridLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btnShowPwd.sizePolicy().hasHeightForWidth())
+        self.btnShowPwd.setSizePolicy(sizePolicy)
+        self.btnShowPwd.setMinimumSize(QtCore.QSize(32, 32))
+        self.btnShowPwd.setMaximumSize(QtCore.QSize(61, 37))
+        self.btnShowPwd.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnShowPwd.setStyleSheet("QPushButton{\n"
+"    border: 1px solid #cccccc;    \n"
+"    border-radius: 12px;\n"
+"    background-color: transparent;\n"
+"    image: url(presentation/icons/closed.png);\n"
+"    width: 24px;\n"
+"    height: 24px;\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"    image: url(presentation/icons/open.png);\n"
+"}\n"
+"")
+        self.btnShowPwd.setText("")
+        self.btnShowPwd.setIconSize(QtCore.QSize(30, 30))
+        self.btnShowPwd.setObjectName("btnShowPwd")
+        self.gridLayout.addWidget(self.btnShowPwd, 1, 1, 1, 1)
         Login.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=Login)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 798, 25))
@@ -204,10 +199,10 @@ class Ui_Login(object):
     def retranslateUi(self, Login):
         _translate = QtCore.QCoreApplication.translate
         Login.setWindowTitle(_translate("Login", "MainWindow"))
-        self.txtUser.setPlaceholderText(_translate("Login", "Ingrese su nombre de usuario"))
-        self.txtPassword.setPlaceholderText(_translate("Login", "Ingrese su contraseña"))
-        self.lblValidUser.setText(_translate("Login", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">TextLabel</span></p></body></html>"))
         self.btnLogin.setText(_translate("Login", "Iniciar sesion"))
         self.label.setText(_translate("Login", "No tenes usuario? Crea uno!"))
         self.btnCreateUser.setText(_translate("Login", "Crear usuario"))
         self.lblAppName.setText(_translate("Login", "Wallet APP !"))
+        self.txtUser.setPlaceholderText(_translate("Login", "Ingrese su nombre de usuario"))
+        self.lblValidUser.setText(_translate("Login", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">TextLabel</span></p></body></html>"))
+        self.txtPassword.setPlaceholderText(_translate("Login", "Ingrese su contraseña"))
