@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BuyDialog</class>
+ <widget class="QDialog" name="BuyDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>513</width>
+    <height>419</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+					background-color: #121212;
+					color: #ffffff;
+					font-family: Segoe UI;
+					font-size: 14px;
+				}</string>
+  </property>
+  <widget class="QLineEdit" name="txtCod">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>60</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: rgba(0,0,0,0.3); 
+    color: #e0ffe0;
+    font-size: 16px;
+    border: 1px solid #77dd77;
+    border-radius: 5px;
+    padding: 5px 10px;
+    qproperty-alignment: 'AlignCenter'; 
+}
+
+QLineEdit::placeholder {
+    color: #aaffaa;
+    font-style: italic;
+}</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhPreferNumbers</set>
+   </property>
+   <property name="placeholderText">
+    <string>COD</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblAmountBuy">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Segoe UI;
+	letter-spacing: 0.5px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Ingrese el monto que desea comprar</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>220</y>
+     <width>421</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="lblBalance">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #77dd77;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Segoe UI;
+	letter-spacing: 0.5px;
+	qproperty-alignment: 'AlignLeft | AlignVCenter';
+}
+</string>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhPreferNumbers</set>
+      </property>
+      <property name="text">
+       <string>Saldo actual en ARS:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblValidBuy">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="cursor">
+       <cursorShape>ForbiddenCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+	color: #ff5555;
+	font-size: 15px;
+	font-weight: bold;
+	qproperty-alignment: 'AlignLeft | AlignVCenter';
+}</string>
+      </property>
+      <property name="locale">
+       <locale language="Spanish" country="LatinAmerica"/>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TextLabel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="lblCodBuy">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>30</y>
+     <width>321</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Segoe UI;
+	letter-spacing: 0.5px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Ingrese el codigo de la moneda a comprar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnBuy">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>340</y>
+     <width>331</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+                        background-color: #77dd77 ;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px 18px;
+                        color: #111111;
+                        font-size: 15px;
+                        font-weight: bold;
+						  letter-spacing: 1px;
+                        }
+
+QPushButton:hover{
+                        background-color:#66cc66;       
+    			            }
+	
+QPushButton:pressed{
+                        background-color:#55aa55;
+                }</string>
+   </property>
+   <property name="text">
+    <string>Comprar</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="txtAmount">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>150</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: rgba(0,0,0,0.3); 
+    color: #e0ffe0;
+    font-size: 16px;
+    border: 1px solid #77dd77;
+    border-radius: 5px;
+    padding: 5px 10px;
+    qproperty-alignment: 'AlignCenter'; 
+}
+
+QLineEdit::placeholder {
+    color: #aaffaa;
+    font-style: italic;
+}</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhPreferNumbers</set>
+   </property>
+   <property name="placeholderText">
+    <string>$</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
