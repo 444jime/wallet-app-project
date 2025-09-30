@@ -12,13 +12,120 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_DepositDialog(object):
     def setupUi(self, DepositDialog):
         DepositDialog.setObjectName("DepositDialog")
-        DepositDialog.resize(400, 300)
+        DepositDialog.resize(516, 427)
         DepositDialog.setStyleSheet("QWidget {\n"
 "                    background-color: #121212;\n"
 "                    color: #ffffff;\n"
 "                    font-family: Segoe UI;\n"
 "                    font-size: 14px;\n"
 "                }")
+        self.lblAppName = QtWidgets.QLabel(parent=DepositDialog)
+        self.lblAppName.setEnabled(True)
+        self.lblAppName.setGeometry(QtCore.QRect(140, 20, 211, 61))
+        self.lblAppName.setStyleSheet("QLabel {\n"
+"    font-family: \"Segoe UI\", Arial, sans-serif;\n"
+"    font-size: 20px;\n"
+"    font-weight: bold;\n"
+"    color: #77dd77;\n"
+"    qproperty-alignment: \'AlignCenter\';\n"
+"}\n"
+"")
+        self.lblAppName.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblAppName.setObjectName("lblAppName")
+        self.txtAmount = QtWidgets.QLineEdit(parent=DepositDialog)
+        self.txtAmount.setEnabled(True)
+        self.txtAmount.setGeometry(QtCore.QRect(140, 150, 221, 61))
+        self.txtAmount.setStyleSheet("QLineEdit {\n"
+"    background-color: rgba(0,0,0,0.3); \n"
+"    color: #e0ffe0;\n"
+"    font-size: 16px;\n"
+"    border: 1px solid #77dd77;\n"
+"    border-radius: 5px;\n"
+"    padding: 5px 10px;\n"
+"    qproperty-alignment: \'AlignCenter\'; \n"
+"}\n"
+"\n"
+"QLineEdit::placeholder {\n"
+"    color: #aaffaa;\n"
+"    font-style: italic;\n"
+"}")
+        self.txtAmount.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhPreferNumbers)
+        self.txtAmount.setObjectName("txtAmount")
+        self.btnDeposit = QtWidgets.QPushButton(parent=DepositDialog)
+        self.btnDeposit.setGeometry(QtCore.QRect(80, 340, 361, 41))
+        self.btnDeposit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.btnDeposit.setStyleSheet("QPushButton{\n"
+"                        background-color: #77dd77 ;\n"
+"                        border: none;\n"
+"                        border-radius: 8px;\n"
+"                        padding: 10px 18px;\n"
+"                        color: #111111;\n"
+"                        font-size: 15px;\n"
+"                        font-weight: bold;\n"
+"                          letter-spacing: 1px;\n"
+"                        }\n"
+"\n"
+"QPushButton:hover{\n"
+"                        background-color:#66cc66;       \n"
+"                            }\n"
+"    \n"
+"QPushButton:pressed{\n"
+"                        background-color:#55aa55;\n"
+"                }")
+        self.btnDeposit.setObjectName("btnDeposit")
+        self.lblDeposit = QtWidgets.QLabel(parent=DepositDialog)
+        self.lblDeposit.setGeometry(QtCore.QRect(110, 110, 281, 21))
+        self.lblDeposit.setStyleSheet("QLabel {\n"
+"    color: #ffffff;\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"    font-family: Segoe UI;\n"
+"    letter-spacing: 0.5px;\n"
+"}")
+        self.lblDeposit.setObjectName("lblDeposit")
+        self.verticalLayoutWidget = QtWidgets.QWidget(parent=DepositDialog)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(120, 230, 261, 81))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.lblBalance = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lblBalance.sizePolicy().hasHeightForWidth())
+        self.lblBalance.setSizePolicy(sizePolicy)
+        self.lblBalance.setAutoFillBackground(False)
+        self.lblBalance.setStyleSheet("QLabel {\n"
+"    color: #77dd77;\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"    font-family: Segoe UI;\n"
+"    letter-spacing: 0.5px;\n"
+"}")
+        self.lblBalance.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhPreferNumbers)
+        self.lblBalance.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblBalance.setWordWrap(True)
+        self.lblBalance.setObjectName("lblBalance")
+        self.verticalLayout.addWidget(self.lblBalance)
+        self.lblValidDeposit = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.lblValidDeposit.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lblValidDeposit.sizePolicy().hasHeightForWidth())
+        self.lblValidDeposit.setSizePolicy(sizePolicy)
+        self.lblValidDeposit.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ForbiddenCursor))
+        self.lblValidDeposit.setStyleSheet("QLabel {\n"
+"    color: #ff5555;\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"}")
+        self.lblValidDeposit.setLocale(QtCore.QLocale(QtCore.QLocale.Language.Spanish, QtCore.QLocale.Country.LatinAmerica))
+        self.lblValidDeposit.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.lblValidDeposit.setWordWrap(True)
+        self.lblValidDeposit.setObjectName("lblValidDeposit")
+        self.verticalLayout.addWidget(self.lblValidDeposit)
 
         self.retranslateUi(DepositDialog)
         QtCore.QMetaObject.connectSlotsByName(DepositDialog)
@@ -26,3 +133,9 @@ class Ui_DepositDialog(object):
     def retranslateUi(self, DepositDialog):
         _translate = QtCore.QCoreApplication.translate
         DepositDialog.setWindowTitle(_translate("DepositDialog", "Dialog"))
+        self.lblAppName.setText(_translate("DepositDialog", "Depositar ARS"))
+        self.txtAmount.setPlaceholderText(_translate("DepositDialog", "ARS$"))
+        self.btnDeposit.setText(_translate("DepositDialog", "Depositar"))
+        self.lblDeposit.setText(_translate("DepositDialog", "Ingrese el monto a depositar en ARS"))
+        self.lblBalance.setText(_translate("DepositDialog", "Saldo actual:"))
+        self.lblValidDeposit.setText(_translate("DepositDialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">TextLabel</span></p></body></html>"))
