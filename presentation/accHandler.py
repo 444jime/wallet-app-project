@@ -5,7 +5,7 @@ import time
 from PyQt6.QtWidgets import QMainWindow, QHeaderView, QTableWidgetItem, QMessageBox, QDialog
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
 from PyQt6.QtCore import pyqtSignal
-from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog,Ui_BuyDialog
+from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog,Ui_BuyDialog,Ui_CreateAccDialog
 
 class AccHandler(QMainWindow,Ui_WalletApp):
     def __init__(self,login_window,user):
@@ -21,6 +21,7 @@ class AccHandler(QMainWindow,Ui_WalletApp):
         self.btnDeposit.clicked.connect(self.deposit)
         self.btnSell.clicked.connect(self.sell)
         self.btnBuy.clicked.connect(self.buy)
+        self.btnCreate.clicked.connect(self.createAcc)
         self.show()
 
     def loadData(self):
@@ -86,7 +87,11 @@ class AccHandler(QMainWindow,Ui_WalletApp):
         self.buyDialog = BuyDialog(self.user)
         self.buyDialog.saldo_actualizado.connect(self.refresh_table)
         self.buyDialog.exec()
-        
+
+    def createAcc(self):
+        self.createAccDialog = CreateAccDialog(self.user)
+        self.createAccDialog.saldo_actualizado.connect(self.refresh_table)
+        self.createAccDialog.exec()
 
 class DepositDialog(QDialog,Ui_DepositDialog):
     saldo_actualizado = pyqtSignal()
@@ -338,4 +343,36 @@ class BuyDialog(QDialog,Ui_BuyDialog):
             )
             self.lblValidBuy.setText(f"Error: {e}")
             self.lblValidBuy.show()
+        self.saldo_actualizado.emit()
+
+class CreateAccDialog(QDialog,Ui_CreateAccDialog):
+    saldo_actualizado = pyqtSignal()
+
+    def __init__(self,user):
+        super().__init__()
+        self.user = user
+        self.verifier = AccVerifier(user)
+        self.setupUi(self)
+
+        self.lblValidAcc.hide()
+
+        self.btnCrear.clicked.connect(self.create_acc)
+
+    def create_acc(self):
+        cod = self.txtCod.text()
+    
+        try:
+            self.verifier.cod_verifier(cod)
+            self.verifier.create_acc(cod.upper())
+            self.lblValidAcc.setStyleSheet(
+                "color: #77dd77; font-size: 15px; font-weight: bold; font-family: Segoe UI; letter-spacing: 0.5px;"
+            )
+            self.lblValidAcc.setText('Cuenta creada correctamente')
+            self.lblValidAcc.show()
+        except ValueError as e:
+            self.lblValidAcc.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidAcc.setText(f"Error: {e}")
+            self.lblValidAcc.show()
         self.saldo_actualizado.emit()

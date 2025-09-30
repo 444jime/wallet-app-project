@@ -4,3 +4,4 @@ from .CreateUser_ui import Ui_CreateUserDialog
 from .Deposit_ui import Ui_DepositDialog
 from .Sell_ui import Ui_SellDialog
 from .Buy_ui import Ui_BuyDialog
+from .CreateAcc_ui import Ui_CreateAccDialog

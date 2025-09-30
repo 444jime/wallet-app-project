@@ -28,7 +28,7 @@ class DbService():
         user = self.get_user(username)
         try:
             return Cuentas.selectBy(idUser=user.id, moneda=moneda).getOne()
-        except SO.SQLObjectNotFound:
+        except (SO.SQLObjectNotFound, SO.SQLObjectIntegrityError):
             raise ValueError('No existe cuenta en esta moneda para este usuario')
 
     def get_acc_by_user(self,username):
