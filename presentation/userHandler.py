@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication,QMainWindow,QLineEdit,QDialog
+from PyQt6.QtWidgets import QMainWindow,QLineEdit,QDialog
 from .screens import Ui_Login, Ui_CreateUserDialog
 from .accHandler import AccHandler
 from business import UserVerifier

@@ -1,27 +1,26 @@
-from business import AccVerifier
-from decimal import Decimal, ROUND_DOWN
-import time
-
+from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog,Ui_BuyDialog,Ui_CreateAccDialog
 from PyQt6.QtWidgets import QMainWindow, QHeaderView, QTableWidgetItem, QMessageBox, QDialog
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
+from decimal import Decimal, ROUND_DOWN
 from PyQt6.QtCore import pyqtSignal
-from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog,Ui_BuyDialog,Ui_CreateAccDialog
+from business import AccVerifier
+import time
 
 class AccHandler(QMainWindow,Ui_WalletApp):
     def __init__(self,login_window,user):
+        super().__init__()
         self.user = user
         self.verifier = AccVerifier(self.user)
         self.login_window = login_window
-        super().__init__()
         self.setupUi(self)
 
         self.tblAccs.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.actionCerrar_sesion.triggered.connect(self.logOut)
         self.loadData()
+        self.btnCreate.clicked.connect(self.createAcc)
         self.btnDeposit.clicked.connect(self.deposit)
         self.btnSell.clicked.connect(self.sell)
         self.btnBuy.clicked.connect(self.buy)
-        self.btnCreate.clicked.connect(self.createAcc)
         self.show()
 
     def loadData(self):
@@ -360,7 +359,7 @@ class CreateAccDialog(QDialog,Ui_CreateAccDialog):
 
     def create_acc(self):
         cod = self.txtCod.text()
-    
+
         try:
             self.verifier.cod_verifier(cod)
             self.verifier.create_acc(cod.upper())

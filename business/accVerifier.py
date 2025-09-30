@@ -60,7 +60,7 @@ class AccVerifier:
     def create_acc(self,acc):
             user = self.dbService.get_user(self.user)
             if not user:
-                raise ValueError('No existe el usuario. accverf')
+                raise ValueError('No existe el usuario.')
             
             try:
                 self.dbService.get_acc(self.user,acc)

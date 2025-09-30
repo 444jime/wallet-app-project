@@ -15,6 +15,10 @@ class DbService():
 
     def newAcc(self, username, currency, initial_balance=0):
         user = self.get_user(username)
+        accs = list(Cuentas.selectBy(idUser=user.id, moneda=currency))
+        if accs:
+            raise ValueError('Ya existe cuenta en esta moneda para este usuario')
+        
         acc = Cuentas(idUser=user.id, moneda=currency, saldo=initial_balance)
         return acc
     

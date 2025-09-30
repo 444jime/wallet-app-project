@@ -1,7 +1,11 @@
+import os
 import sqlobject as SO
+from dotenv import load_dotenv
 from sqlobject import DecimalCol
 
-database = 'mysql://tania:abc123@localhost/prog2_2025'
+load_dotenv()
+
+database = os.getenv("DATABASE_CONNECTION")
 
 __connection__ = SO.connectionForURI(database)
 
