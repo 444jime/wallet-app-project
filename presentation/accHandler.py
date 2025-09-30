@@ -1,10 +1,10 @@
 from business import AccVerifier
-from decimal import Decimal, ROUND_DOWN, InvalidOperation
+from decimal import Decimal, ROUND_DOWN
 import time
 
 from PyQt6.QtWidgets import QMainWindow, QHeaderView, QTableWidgetItem, QMessageBox, QDialog
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
-from .screens import Ui_WalletApp, Ui_DepositDialog
+from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog
 
 class AccHandler(QMainWindow,Ui_WalletApp):
     def __init__(self,login_window,user):
@@ -18,6 +18,7 @@ class AccHandler(QMainWindow,Ui_WalletApp):
         self.actionCerrar_sesion.triggered.connect(self.logOut)
         self.loadData()
         self.btnDeposit.clicked.connect(self.deposit)
+        self.btnSell.clicked.connect(self.sell)
 
         self.show()
 
@@ -69,6 +70,10 @@ class AccHandler(QMainWindow,Ui_WalletApp):
     def deposit(self):
         self.depositDialog = DepositDialog(self.user)
         self.depositDialog.exec()
+
+    def sell(self):
+        self.sellDialog = SellDialog(self.user)
+        self.sellDialog.exec()
         
 class DepositDialog(QDialog,Ui_DepositDialog):
     def __init__(self,user):
@@ -112,3 +117,76 @@ class DepositDialog(QDialog,Ui_DepositDialog):
             )
             self.lblValidDeposit.setText(f'Error: {e}')
             self.lblValidDeposit.show()
+
+class SellDialog(QDialog,Ui_SellDialog):
+    def __init__(self,user):
+        super().__init__()
+        self.user = user
+        self.verifier = AccVerifier(user)
+        self.setupUi(self)
+
+        self.lblValidSell.hide()
+
+        self.check_balance()
+        self.btnSell.clicked.connect(self.sell)
+
+    def check_balance(self):
+        self.verifier.cod_verifier('ARS')
+        saldo_cod = self.verifier.get_acc_balance('ARS')
+        saldo = Decimal(saldo_cod).quantize(Decimal("0.01"),rounding=ROUND_DOWN)
+        saldo = str(saldo).replace('.',',')
+        self.lblBalance.setText(f"Saldo actual en ARS: \n ${saldo}")
+
+    def sell(self):
+        self.lblValidSell.hide()
+
+        cod = self.txtCod.text().upper()
+
+        try:
+            self.verifier.cod_verifier(cod)
+        except ValueError as e:
+            self.lblValidSell.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidSell.setText(f'Error: {e}')
+            self.lblValidSell.show()
+            return
+
+        if cod == 'ARS':
+            self.lblValidSell.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidSell.setText('Ingreso invalido, no puede vender ARS.')
+            self.lblValidSell.show()
+            return
+
+        amount_text = self.txtAmount.text()
+        if not amount_text:
+            self.lblValidSell.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidSell.setText("Error: Ingrese un número válido")
+            self.lblValidSell.show()
+            return
+    
+        try:
+            amount = Decimal(amount_text.replace(',', '.'))
+            saldo_origen, saldo_ARS = self.verifier.sell_verifier(cod,"ARS",amount)
+            
+            saldo_origen = saldo_origen.quantize(Decimal("0.01"), rouning=ROUND_DOWN)
+            saldo_origen_str = str(saldo_origen).replace('.',',')
+            
+            saldo_ARS = saldo_ARS.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+            saldo_ARS_str = str(saldo_ARS).replace('.',',')
+
+            self.lblBalance.setText(
+                f'Venta exitosa!\n Saldo actual en {cod.upper()}: {saldo_origen_str}' 
+                f'\nSaldo actual en ARS: {saldo_ARS_str}'
+            )
+
+        except ValueError as e:
+            self.lblValidSell.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidSell.setText(f"Error: {e}")
+            self.lblValidSell.show()
