@@ -4,7 +4,8 @@ import time
 
 from PyQt6.QtWidgets import QMainWindow, QHeaderView, QTableWidgetItem, QMessageBox, QDialog
 from PyQt6.QtGui import QIntValidator, QDoubleValidator
-from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog
+from PyQt6.QtCore import pyqtSignal
+from .screens import Ui_WalletApp, Ui_DepositDialog, Ui_SellDialog,Ui_BuyDialog
 
 class AccHandler(QMainWindow,Ui_WalletApp):
     def __init__(self,login_window,user):
@@ -19,7 +20,7 @@ class AccHandler(QMainWindow,Ui_WalletApp):
         self.loadData()
         self.btnDeposit.clicked.connect(self.deposit)
         self.btnSell.clicked.connect(self.sell)
-
+        self.btnBuy.clicked.connect(self.buy)
         self.show()
 
     def loadData(self):
@@ -67,15 +68,29 @@ class AccHandler(QMainWindow,Ui_WalletApp):
             self.close()
             self.login_window.show()
             
+    def refresh_table(self):
+        self.tblAccs.setRowCount(0)
+        self.loadData()
+
     def deposit(self):
         self.depositDialog = DepositDialog(self.user)
+        self.depositDialog.saldo_actualizado.connect(self.refresh_table)
         self.depositDialog.exec()
-
+                
     def sell(self):
         self.sellDialog = SellDialog(self.user)
-        self.sellDialog.exec()
+        self.sellDialog.saldo_actualizado.connect(self.refresh_table)
+        self.sellDialog.exec()        
+    
+    def buy(self):
+        self.buyDialog = BuyDialog(self.user)
+        self.buyDialog.saldo_actualizado.connect(self.refresh_table)
+        self.buyDialog.exec()
         
+
 class DepositDialog(QDialog,Ui_DepositDialog):
+    saldo_actualizado = pyqtSignal()
+
     def __init__(self,user):
         super().__init__()
         self.user = user
@@ -111,14 +126,18 @@ class DepositDialog(QDialog,Ui_DepositDialog):
             current_balance = current_balance.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
             balance_str = str(current_balance).replace('.', ',')
             self.lblBalance.setText(f'Monto depositado correctamente, saldo actual en ARS: {balance_str}')
+            self.txtAmount.clear()
         except ValueError as e:
             self.lblValidDeposit.setStyleSheet(
                 "font-size: 15px; font-weight: bold; color: #ff5555;"
             )
             self.lblValidDeposit.setText(f'Error: {e}')
             self.lblValidDeposit.show()
+        self.saldo_actualizado.emit()
 
 class SellDialog(QDialog,Ui_SellDialog):
+    saldo_actualizado = pyqtSignal()
+
     def __init__(self,user):
         super().__init__()
         self.user = user
@@ -173,16 +192,18 @@ class SellDialog(QDialog,Ui_SellDialog):
             amount = Decimal(amount_text.replace(',', '.'))
             saldo_origen, saldo_ARS = self.verifier.sell_verifier(cod,"ARS",amount)
             
-            saldo_origen = saldo_origen.quantize(Decimal("0.01"), rouning=ROUND_DOWN)
+            saldo_origen = saldo_origen.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
             saldo_origen_str = str(saldo_origen).replace('.',',')
             
             saldo_ARS = saldo_ARS.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
             saldo_ARS_str = str(saldo_ARS).replace('.',',')
 
             self.lblBalance.setText(
-                f'Venta exitosa!\n Saldo actual en {cod.upper()}: {saldo_origen_str}' 
-                f'\nSaldo actual en ARS: {saldo_ARS_str}'
+                f'Venta exitosa!\n Saldo actual en {cod.upper()}: {saldo_origen_str}\n' 
+                f'Saldo actual en ARS: {saldo_ARS_str}'
             )
+            self.txtCod.clear()
+            self.txtAmount.clear()
 
         except ValueError as e:
             self.lblValidSell.setStyleSheet(
@@ -190,3 +211,131 @@ class SellDialog(QDialog,Ui_SellDialog):
             )
             self.lblValidSell.setText(f"Error: {e}")
             self.lblValidSell.show()
+        self.saldo_actualizado.emit()
+
+class BuyDialog(QDialog,Ui_BuyDialog):
+    saldo_actualizado = pyqtSignal()
+
+    def __init__(self,user):
+        super().__init__()
+        self.user = user
+        self.verifier = AccVerifier(user)
+        self.setupUi(self)
+
+        self.lblValidBuy.hide()
+
+        self.check_balance()
+        self.btnBuy.clicked.connect(self.buy)
+
+    def check_balance(self):
+        self.verifier.cod_verifier('ARS')
+        saldo_cod = self.verifier.get_acc_balance('ARS')
+        saldo = Decimal(saldo_cod).quantize(Decimal("0.01"),rounding=ROUND_DOWN)
+        saldo = str(saldo).replace('.',',')
+        self.lblBalance.setText(f"Saldo actual en ARS: \n ${saldo}")
+
+    def confirm(self):
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle('Comprar moneda')
+        msg_box.setText('¿Esta seguro de realizar la compra?')
+        msg_box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No) 
+        
+        msg_box.setStyleSheet("""
+            QMessageBox {
+                color: #e0ffe0;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+            }
+            QPushButton {
+                background-color: #77dd77;
+                color: #1b1b1b;
+                border-radius: 5px;
+                padding: 5px 15px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #4a7a4a;
+                color: #ffffff;
+            }
+            QPushButton:pressed {
+                background-color: #2d5d2d;
+            }
+        """)
+
+        return msg_box.exec()
+
+    def buy(self):
+        self.lblValidBuy.hide()
+        cod = self.txtCod.text().upper()
+
+        try:
+            self.verifier.cod_verifier(cod)
+        except ValueError as e:
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText(f'Error: {e}')
+            self.lblValidBuy.show()
+            return
+
+        if cod == 'ARS':
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText('Ingreso invalido, no puede comprar ARS.')            
+            self.lblValidBuy.show()
+            return
+
+        amount_text = self.txtAmount.text()
+        if not amount_text:
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText("Error: Ingrese un número válido")
+            self.lblValidBuy.show()
+            return
+
+        start_time = time.time()
+
+
+        user_input  = self.confirm()
+        if (time.time()-start_time) > 120:
+            user_input=QMessageBox.StandardButton.No
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText('Tiempo agotado, compra cancelada.')
+            self.lblValidBuy.show()
+            return                 
+        if user_input !=  QMessageBox.StandardButton.Yes :
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText('Compra cancelada.')
+            self.lblValidBuy.show()
+            return
+    
+        try:
+            amount = Decimal(amount_text.replace(',', '.'))
+            saldo_ARS, saldo_cod = self.verifier.buy_verifier("ARS",cod.upper(),amount)
+
+            saldo_ARS = saldo_ARS.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+            saldo_ARS_str = str(saldo_ARS).replace('.',',')
+
+            saldo_cod = saldo_cod.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+            saldo_cod_str = str(saldo_cod).replace('.',',')
+
+            self.lblBalance.setText(
+                f'Compra exitosa! \nSaldo actual en ARS: {saldo_ARS_str}\n'
+                f'Saldo actual en {cod.upper()}: {saldo_cod_str}'
+            )
+            self.txtCod.clear()
+            self.txtAmount.clear()
+
+        except ValueError as e:
+            self.lblValidBuy.setStyleSheet(
+                "font-size: 15px; font-weight: bold; color: #ff5555;"
+            )
+            self.lblValidBuy.setText(f"Error: {e}")
+            self.lblValidBuy.show()
+        self.saldo_actualizado.emit()
