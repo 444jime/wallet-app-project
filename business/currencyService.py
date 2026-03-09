@@ -1,8 +1,12 @@
+import os
 from requests import get
 from decimal import Decimal
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class CurrencyService:
-    api_key = "9a7384ecf66a4925b6288c12d5b0564c"
+    api_key = os.getenv("APY_KEY")
 
     def get_key_list(self):
         url = f"https://api.currencyfreaks.com/v2.0/rates/latest?apikey={self.api_key}"

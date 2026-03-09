@@ -38,8 +38,21 @@ class AccVerifier:
             raise ValueError('No existe cuenta en esta moneda para este usuario')
         
         return cuenta.saldo
-        
+    
+    def get_all_accs(self):    
+        cuentas = self.dbService.get_acc_by_user(self.user)
+        return cuentas
+    
+    def valid_entry(self, entry):
+        if entry is None:
+            raise ValueError("Entrada vacía")
+        if isinstance(entry, str) and len(entry.strip()) == 0:
+            raise ValueError("Entrada vacía")
+        return True
+
+
     def negative_verifier(self,amount):
+        self.valid_entry(amount)
         decimal = Decimal(str(amount))
         if decimal <= 0:
             raise ValueError('No se admiten valores negativos')
@@ -47,7 +60,7 @@ class AccVerifier:
     def create_acc(self,acc):
             user = self.dbService.get_user(self.user)
             if not user:
-                raise ValueError('No existe el usuario. accverf')
+                raise ValueError('No existe el usuario.')
             
             try:
                 self.dbService.get_acc(self.user,acc)
@@ -57,7 +70,8 @@ class AccVerifier:
                 return True
     
     def deposit_verify(self,amount):
-        self.negative_verifier(amount)        
+        self.valid_entry(amount)
+        self.negative_verifier(amount)
         nuevo_saldo = self.dbService.deposit_amount(self.user,"ARS",amount)        
         return nuevo_saldo
     
